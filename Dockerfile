@@ -17,7 +17,7 @@
 # ------------------------------------------------------------------------
 
 # set base Docker image to Ubuntu 20.04 Docker image
-FROM ubuntu:20.04
+FROM ubuntu:latest
 
 LABEL maintainer="WSO2 Docker Maintainers <dev@wso2.org>" \
       com.wso2.docker.source="https://github.com/wso2/docker-is/releases/tag/v7.0.0.1"
@@ -108,7 +108,6 @@ COPY --chown=wso2carbon:wso2 docker-entrypoint.sh ${USER_HOME}/
 RUN \
     apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        netcat \
         unzip \
         wget \
     && rm -rf /var/lib/apt/lists/*
@@ -125,7 +124,6 @@ ADD --chown=wso2carbon:wso2 http://maven.wso2.org/nexus/content/repositories/rel
 # add MySQL JDBC connector to server home as a third party library
 ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar ${WSO2_SERVER_HOME}/repository/components/dropins/
 
-# RUN wget -P wso2is-7.0.0/repository/components/lib/ https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
 # Set the user and work directory.
 USER ${USER_ID}
 WORKDIR ${USER_HOME}
