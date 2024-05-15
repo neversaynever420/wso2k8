@@ -1,0 +1,58 @@
+[server]
+hostname = "localhost"
+node_ip = "127.0.0.1"
+base_path = "https://$ref{server.hostname}:${carbon.management.port}"
+
+[super_admin]
+username = "admin"
+password = "admin"
+create_admin_account = true
+
+[user_store]
+type = "database_unique_id"
+
+[database.identity_db]
+type = "postgre"
+url = "jdbc:postgresql://wso2is-db:5432/testdb"
+username = "regadmin"
+password = "regadmin"
+port = "5432"
+
+[database.identity_db.pool_options]
+validationQuery="SELECT 1"
+
+[database.shared_db]
+type = "postgre"
+url = "jdbc:postgresql://wso2is-db:5432/testdb"
+username = "regadmin"
+password = "regadmin"
+port = "5432"
+
+[bps_database.config]
+url = "jdbc:postgresql://wso2is-db:5432/testdb"
+username = "regadmin"
+password = "regadmin"
+driver = "org.postgresql.Driver"
+
+[bps_database.config.pool_options]
+defaultAutoCommit=true
+commitOnReturn=true
+
+[database.shared_db.pool_options]
+validationQuery="SELECT 1"
+
+[keystore.primary]
+file_name = "wso2carbon.jks"
+password = "wso2carbon"
+type="JKS"
+
+[truststore]
+file_name="client-truststore.jks"
+password="wso2carbon"
+type="JKS"
+
+[account_recovery.endpoint.auth]
+hash= "66cd9688a2ae068244ea01e70f0e230f5623b7fa4cdecb65070a09ec06452262"
+
+[identity.auth_framework.endpoint]
+app_password= "dashboard"
