@@ -1,0 +1,48 @@
+version: "2.3"
+services:
+  db:
+    image: postgres:13.5-alpine
+    container_name: wso2is-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: regadmin
+      POSTGRES_PASSWORD: regadmin
+      POSTGRES_DB: testdb
+    ports:
+      - 5432
+    volumes:
+      - wso2:/var/lib/postgresql/data
+      - ./db_scripts/:/docker-entrypoint-initdb.d/ # This script was downloaded from wso2 is product 7.0.0, has to be run to prepare the database
+    networks:
+      - wso2net
+  identity-server:
+    image: local-is-7
+    container_name: wso2is
+    ports:
+      - "9763:9763"
+      - "9443:9443"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-k",
+          "-f",
+          "https://localhost:9443/carbon/admin/login.jsp",
+        ]
+      interval: 5s
+      timeout: 120s
+      start_period: 100s
+    volumes:
+      - ./conf:/home/wso2carbon/wso2-config-volume
+    depends_on:
+      - db
+    networks:
+      - wso2net
+
+networks:
+  wso2net:
+    driver: bridge
+
+volumes:
+  wso2:
