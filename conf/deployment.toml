@@ -4,8 +4,8 @@ node_ip = "127.0.0.1"
 base_path = "https://$ref{server.hostname}:${carbon.management.port}"
 
 [super_admin]
-username = "admin"
-password = "admin"
+username = "_USER_ADMIN"
+password = "_USER_ADMIN_P"
 create_admin_account = true
 
 [user_store]
@@ -14,8 +14,8 @@ type = "database_unique_id"
 [database.identity_db]
 type = "postgre"
 url = "jdbc:postgresql://wso2is-db:5432/testdb"
-username = "regadmin"
-password = "regadmin"
+username = "_IDENTITY_DB_ADMIN_U"
+password = "_IDENTITY_DB_ADMIN_P"
 port = "5432"
 
 [database.identity_db.pool_options]
@@ -24,14 +24,14 @@ validationQuery="SELECT 1"
 [database.shared_db]
 type = "postgre"
 url = "jdbc:postgresql://wso2is-db:5432/testdb"
-username = "regadmin"
-password = "regadmin"
+username = "_SHARED_DB_ADMIN_U"
+password = "_SHARED_DB_ADMIN_P"
 port = "5432"
 
 [bps_database.config]
 url = "jdbc:postgresql://wso2is-db:5432/testdb"
-username = "regadmin"
-password = "regadmin"
+username = "_BPS_DATABASE_CONFIG_U"
+password = "_BPS_DATABASE_CONFIG_P"
 driver = "org.postgresql.Driver"
 
 [bps_database.config.pool_options]
@@ -43,16 +43,16 @@ validationQuery="SELECT 1"
 
 [keystore.primary]
 file_name = "wso2carbon.jks"
-password = "wso2carbon"
+password = "_KEYSTORE_PRIMARY_P"
 type="JKS"
 
 [truststore]
 file_name="client-truststore.jks"
-password="wso2carbon"
+password="_TRUSTSTORE_P"
 type="JKS"
 
 [account_recovery.endpoint.auth]
 hash= "66cd9688a2ae068244ea01e70f0e230f5623b7fa4cdecb65070a09ec06452262"
 
 [identity.auth_framework.endpoint]
-app_password= "dashboard"
+app_password= "_AUTH_FRAMEWORK_ENDPOINT_P"
