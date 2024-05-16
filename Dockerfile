@@ -123,7 +123,8 @@ ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/dnsjava/dnsjava/${DNS
 ADD --chown=wso2carbon:wso2 http://maven.wso2.org/nexus/content/repositories/releases/org/wso2/carbon/kubernetes/artifacts/kubernetes-membership-scheme/${K8S_MEMBERSHIP_SCHEME_VERSION}/kubernetes-membership-scheme-${K8S_MEMBERSHIP_SCHEME_VERSION}.jar ${WSO2_SERVER_HOME}/repository/components/dropins
 # add MySQL JDBC connector to server home as a third party library
 ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar ${WSO2_SERVER_HOME}/repository/components/dropins/
-RUN wget -P ${USER_HOME}/wso2is-7.0.0/repository/components/lib/ https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
+#RUN wget -P ${USER_HOME}/wso2is-7.0.0/repository/components/lib/ https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
+ADD --chown=wso2carbon:wso2 https://jdbc.postgresql.org/download/postgresql-42.7.3.jar ${WSO2_SERVER_HOME}/repository/components/lib
 # Set the user and work directory.
 USER ${USER_ID}
 WORKDIR ${USER_HOME}
