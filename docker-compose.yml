@@ -12,11 +12,11 @@ services:
       - 5432
     volumes:
       - wso2:/var/lib/postgresql/data
-      - ./db_scripts/:/docker-entrypoint-initdb.d/ # This script was downloaded from wso2 is product 7.0.0, has to be run to prepare the database
+      - ./dbscripts/:/docker-entrypoint-initdb.d/ # This script was downloaded from wso2 is product 7.0.0, has to be run to prepare the database
     networks:
       - wso2net
   identity-server:
-    image: local-is-7
+    image: wso2is:7.0.0
     container_name: wso2is
     ports:
       - "9763:9763"

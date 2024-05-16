@@ -125,10 +125,10 @@ ADD --chown=wso2carbon:wso2 http://maven.wso2.org/nexus/content/repositories/rel
 ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar ${WSO2_SERVER_HOME}/repository/components/dropins/
 #RUN wget -P ${USER_HOME}/wso2is-7.0.0/repository/components/lib/ https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
 ADD --chown=wso2carbon:wso2 https://jdbc.postgresql.org/download/postgresql-42.7.3.jar ${WSO2_SERVER_HOME}/repository/components/lib
-COPY --chown=wso2carbon:wso2 conf/deployment.toml ${USER_HOME}/wso2is-7.0.0/repository/conf/deployment.toml
 # Set the user and work directory.
 USER ${USER_ID}
 WORKDIR ${USER_HOME}
+RUN sed -i 's/localhost/wso2is.shared.adtune.io/g' /home/wso2carbon/wso2is-7.0.0/repository/conf/deployment.toml
 
 # set environment variables
 ENV JAVA_OPTS="-Djava.util.prefs.systemRoot=${USER_HOME}/.java -Djava.util.prefs.userRoot=${USER_HOME}/.java/.userPrefs" \
